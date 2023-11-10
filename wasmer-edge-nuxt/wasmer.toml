@@ -1,0 +1,10 @@
+[package]
+name = "wasmer/wasmer-edge-nuxt"
+version = "0.1.0"
+description = "wasmer/wasmer-edge-nuxt website"
+
+[dependencies]
+"wasmer/static-web-server" = "*"
+
+[fs]
+public = ".output/public"

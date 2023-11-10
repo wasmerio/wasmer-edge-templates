@@ -1,0 +1,10 @@
+[package]
+name = "wasmer/wasmer-edge-gatsby-example"
+version = "0.1.0"
+description = "wasmer/wasmer-edge-gatsby-example website"
+
+[dependencies]
+"wasmer/static-web-server" = "*"
+
+[fs]
+public = "public"

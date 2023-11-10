@@ -1,0 +1,10 @@
+[package]
+name = "wasmer/wasmer-edge-docusaurus-example"
+version = "0.1.0"
+description = "wasmer/wasmer-edge-docusaurus-example website"
+
+[dependencies]
+"wasmer/static-web-server" = "*"
+
+[fs]
+public = "build"
