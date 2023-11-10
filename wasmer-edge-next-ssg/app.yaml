@@ -1,0 +1,5 @@
+---
+kind: wasmer.io/App.v0
+name: wasmer-edge-next-ssg-example
+app_id: da_VnP7IptBU97K
+package: wasmer/wasmer-edge-next-ssg-example

@@ -1,0 +1,10 @@
+[package]
+name = "wasmer/wasmer-edge-next-ssg-example"
+version = "0.1.1"
+description = "wasmer/wasmer-edge-next-ssg-example website"
+
+[dependencies]
+"wasmer/static-web-server" = "^1"
+
+[fs]
+public = "out"
