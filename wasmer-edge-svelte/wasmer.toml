@@ -1,0 +1,10 @@
+[package]
+name = "wasmer/wasmer-edge-svelte-example"
+version = "0.1.1"
+description = "wasmer/wasmer-edge-svelte-example website"
+
+[dependencies]
+"wasmer/static-web-server" = "*"
+
+[fs]
+public = "build"

@@ -1,0 +1,10 @@
+[package]
+name = "wasmer/wasmer-edge-mkdocs-example"
+version = "0.1.0"
+description = "wasmer/wasmer-edge-mkdocs-example website"
+
+[dependencies]
+"wasmer/static-web-server" = "^1"
+
+[fs]
+public = "site"
