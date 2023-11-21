@@ -23,7 +23,7 @@ concurrency:
 
 jobs:
   build_and_deploy_astro:
-    name: Deploy Astro to Wasmer Edge
+    name: Build and deploy an Astro website to Wasmer Edge
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -43,7 +43,6 @@ jobs:
         shell: bash
         run: |
           echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-
       - uses: actions/cache@v3
         name: Setup pnpm cache
         with:
@@ -57,21 +56,13 @@ jobs:
       - name: Build Astro
         working-directory: ${{env.ASTRO_DIR}}
         run: pnpm build
-      - name: Publish package to wasmer.wtf
-        working-directory: ${{env.ASTRO_DIR}}
-        run: wasmer publish --registry="wasmer.wtf" --token=${{ secrets.WAPM_DEV_TOKEN }} --no-validate .
       - name: Deploy app to wasmer.wtf
-        shell: bash
         working-directory: ${{env.ASTRO_DIR}}
-        run: wasmer deploy --registry="https://registry.wasmer.wtf/graphql" --token=${{ secrets.WAPM_DEV_TOKEN }} --non-interactive --no-wait --no-persist-id
-      - name: Publish package to wasmer.io
-        working-directory: ${{env.ASTRO_DIR}}
-        run: wasmer publish --registry="wasmer.io" --token=${{ secrets.WASMER_CIUSER_PROD_TOKEN }} --no-validate .
+        run: wasmer deploy --registry="https://registry.wasmer.wtf/graphql" --token=${{ secrets.WAPM_DEV_TOKEN }} --publish-package --non-interactive --no-wait --no-persist-id
         continue-on-error: true
       - name: Deploy app to wasmer.io
         working-directory: ${{env.ASTRO_DIR}}
-        run: wasmer deploy --registry="https://registry.wasmer.io/graphql" --token=${{ secrets.WASMER_CIUSER_PROD_TOKEN }} --non-interactive --no-wait --no-persist-id
-
+        run: wasmer deploy --registry="https://registry.wasmer.io/graphql" --token=${{ secrets.WASMER_CIUSER_PROD_TOKEN }} --publish-package --non-interactive --no-wait --no-persist-id
   build_and_deploy_docusaurus:
     name: Build and Deploy Docusaurus based static site to Wasmer Edge
     runs-on: ubuntu-latest
@@ -93,7 +84,6 @@ jobs:
         shell: bash
         run: |
           echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-
       - uses: actions/cache@v3
         name: Setup pnpm cache
         with:
@@ -107,20 +97,13 @@ jobs:
       - name: Build Docusaurus
         working-directory: ${{env.DOCUSAURUS_DIR}}
         run: pnpm build
-      - name: Publish package to wasmer.wtf
-        working-directory: ${{env.DOCUSAURUS_DIR}}
-        run: wasmer publish --registry="wasmer.wtf" --token=${{ secrets.WAPM_DEV_TOKEN }} --no-validate .
       - name: Deploy app to wasmer.wtf
-        shell: bash
         working-directory: ${{env.DOCUSAURUS_DIR}}
-        run: wasmer deploy --registry="https://registry.wasmer.wtf/graphql" --token=${{ secrets.WAPM_DEV_TOKEN }} --non-interactive --no-wait --no-persist-id
-      - name: Publish package to wasmer.io
-        working-directory: ${{env.DOCUSAURUS_DIR}}
-        run: wasmer publish --registry="wasmer.io" --token=${{ secrets.WASMER_CIUSER_PROD_TOKEN }} --no-validate .
+        run: wasmer deploy --registry="https://registry.wasmer.wtf/graphql" --token=${{ secrets.WAPM_DEV_TOKEN }} --publish-package --non-interactive --no-wait --no-persist-id
         continue-on-error: true
       - name: Deploy app to wasmer.io
         working-directory: ${{env.DOCUSAURUS_DIR}}
-        run: wasmer deploy --registry="https://registry.wasmer.io/graphql" --token=${{ secrets.WASMER_CIUSER_PROD_TOKEN }} --non-interactive --no-wait --no-persist-id
+        run: wasmer deploy --registry="https://registry.wasmer.io/graphql" --token=${{ secrets.WASMER_CIUSER_PROD_TOKEN }} --publish-package --non-interactive --no-wait --no-persist-id
   build_and_deploy_gatsby:
     name: Build and Deploy Gatsby based static site to Wasmer Edge
     runs-on: ubuntu-latest
@@ -142,7 +125,6 @@ jobs:
         shell: bash
         run: |
           echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-
       - uses: actions/cache@v3
         name: Setup pnpm cache
         with:
@@ -156,20 +138,13 @@ jobs:
       - name: Build Gatsby
         working-directory: ${{env.GATSBY_DIR}}
         run: pnpm build
-      - name: Publish package to wasmer.wtf
-        working-directory: ${{env.GATSBY_DIR}}
-        run: wasmer publish --registry="wasmer.wtf" --token=${{ secrets.WAPM_DEV_TOKEN }} --no-validate .
       - name: Deploy app to wasmer.wtf
-        shell: bash
         working-directory: ${{env.GATSBY_DIR}}
-        run: wasmer deploy --registry="https://registry.wasmer.wtf/graphql" --token=${{ secrets.WAPM_DEV_TOKEN }} --non-interactive --no-wait --no-persist-id
-      - name: Publish package to wasmer.io
-        working-directory: ${{env.GATSBY_DIR}}
-        run: wasmer publish --registry="wasmer.io" --token=${{ secrets.WASMER_CIUSER_PROD_TOKEN }} --no-validate .
+        run: wasmer deploy --registry="https://registry.wasmer.wtf/graphql" --token=${{ secrets.WAPM_DEV_TOKEN }} --publish-package --non-interactive --no-wait --no-persist-id
         continue-on-error: true
       - name: Deploy app to wasmer.io
         working-directory: ${{env.GATSBY_DIR}}
-        run: wasmer deploy --registry="https://registry.wasmer.io/graphql" --token=${{ secrets.WASMER_CIUSER_PROD_TOKEN }} --non-interactive --no-wait --no-persist-id
+        run: wasmer deploy --registry="https://registry.wasmer.io/graphql" --token=${{ secrets.WASMER_CIUSER_PROD_TOKEN }} --publish-package --non-interactive --no-wait --no-persist-id
   build_and_deploy_hugo:
     name: Build and Deploy Hugo based static site to Wasmer Edge
     runs-on: ubuntu-latest
@@ -191,7 +166,6 @@ jobs:
         shell: bash
         run: |
           echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-
       - uses: actions/cache@v3
         name: Setup pnpm cache
         with:
@@ -205,20 +179,13 @@ jobs:
       - name: Build Hugo
         working-directory: ${{env.HUGO_DIR}}
         run: pnpm build
-      - name: Publish package to wasmer.wtf
-        working-directory: ${{env.HUGO_DIR}}
-        run: wasmer publish --registry="wasmer.wtf" --token=${{ secrets.WAPM_DEV_TOKEN }} --no-validate .
       - name: Deploy app to wasmer.wtf
-        shell: bash
         working-directory: ${{env.HUGO_DIR}}
-        run: wasmer deploy --registry="https://registry.wasmer.wtf/graphql" --token=${{ secrets.WAPM_DEV_TOKEN }} --non-interactive --no-wait --no-persist-id
-      - name: Publish package to wasmer.io
-        working-directory: ${{env.HUGO_DIR}}
-        run: wasmer publish --registry="wasmer.io" --token=${{ secrets.WASMER_CIUSER_PROD_TOKEN }} --no-validate .
+        run: wasmer deploy --registry="https://registry.wasmer.wtf/graphql" --token=${{ secrets.WAPM_DEV_TOKEN }} --publish-package --non-interactive --no-wait --no-persist-id
         continue-on-error: true
       - name: Deploy app to wasmer.io
         working-directory: ${{env.HUGO_DIR}}
-        run: wasmer deploy --registry="https://registry.wasmer.io/graphql" --token=${{ secrets.WASMER_CIUSER_PROD_TOKEN }} --non-interactive --no-wait --no-persist-id
+        run: wasmer deploy --registry="https://registry.wasmer.io/graphql" --token=${{ secrets.WASMER_CIUSER_PROD_TOKEN }} --publish-package --non-interactive --no-wait --no-persist-id
   build_and_deploy_mkdocs:
     name: Build and Deploy MKDocs based static site to Wasmer Edge
     runs-on: ubuntu-latest
@@ -240,7 +207,6 @@ jobs:
         shell: bash
         run: |
           echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-
       - uses: actions/cache@v3
         name: Setup pnpm cache
         with:
@@ -254,20 +220,13 @@ jobs:
       - name: Build MKdocs
         working-directory: ${{env.MKDOCS_DIR}}
         run: pnpm build
-      - name: Publish package to wasmer.wtf
-        working-directory: ${{env.MKDOCS_DIR}}
-        run: wasmer publish --registry="wasmer.wtf" --token=${{ secrets.WAPM_DEV_TOKEN }} --no-validate .
       - name: Deploy app to wasmer.wtf
-        shell: bash
         working-directory: ${{env.MKDOCS_DIR}}
-        run: wasmer deploy --registry="https://registry.wasmer.wtf/graphql" --token=${{ secrets.WAPM_DEV_TOKEN }} --non-interactive --no-wait --no-persist-id
-      - name: Publish package to wasmer.io
-        working-directory: ${{env.MKDOCS_DIR}}
-        run: wasmer publish --registry="wasmer.io" --token=${{ secrets.WASMER_CIUSER_PROD_TOKEN }} --no-validate .
+        run: wasmer deploy --registry="https://registry.wasmer.wtf/graphql" --token=${{ secrets.WAPM_DEV_TOKEN }} --publish-package --non-interactive --no-wait --no-persist-id
         continue-on-error: true
       - name: Deploy app to wasmer.io
         working-directory: ${{env.MKDOCS_DIR}}
-        run: wasmer deploy --registry="https://registry.wasmer.io/graphql" --token=${{ secrets.WASMER_CIUSER_PROD_TOKEN }} --non-interactive --no-wait --no-persist-id
+        run: wasmer deploy --registry="https://registry.wasmer.io/graphql" --token=${{ secrets.WASMER_CIUSER_PROD_TOKEN }} --publish-package --non-interactive --no-wait --no-persist-id
   build_and_deploy_next_ssg:
     name: Build and Deploy Next based static site to Wasmer Edge
     runs-on: ubuntu-latest
@@ -289,7 +248,6 @@ jobs:
         shell: bash
         run: |
           echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-
       - uses: actions/cache@v3
         name: Setup pnpm cache
         with:
@@ -303,20 +261,13 @@ jobs:
       - name: Build Next.js SSG
         working-directory: ${{env.NEXTJS_DIR}}
         run: pnpm build
-      - name: Publish package to wasmer.wtf
-        working-directory: ${{env.NEXTJS_DIR}}
-        run: wasmer publish --registry="wasmer.wtf" --token=${{ secrets.WAPM_DEV_TOKEN }} --no-validate .
       - name: Deploy app to wasmer.wtf
-        shell: bash
         working-directory: ${{env.NEXTJS_DIR}}
-        run: wasmer deploy --registry="https://registry.wasmer.wtf/graphql" --token=${{ secrets.WAPM_DEV_TOKEN }} --non-interactive --no-wait --no-persist-id
-      - name: Publish package to wasmer.io
-        working-directory: ${{env.NEXTJS_DIR}}
-        run: wasmer publish --registry="wasmer.io" --token=${{ secrets.WASMER_CIUSER_PROD_TOKEN }} --no-validate .
+        run: wasmer deploy --registry="https://registry.wasmer.wtf/graphql" --token=${{ secrets.WAPM_DEV_TOKEN }} --publish-package --non-interactive --no-wait --no-persist-id
         continue-on-error: true
       - name: Deploy app to wasmer.io
         working-directory: ${{env.NEXTJS_DIR}}
-        run: wasmer deploy --registry="https://registry.wasmer.io/graphql" --token=${{ secrets.WASMER_CIUSER_PROD_TOKEN }} --non-interactive --no-wait --no-persist-id
+        run: wasmer deploy --registry="https://registry.wasmer.io/graphql" --token=${{ secrets.WASMER_CIUSER_PROD_TOKEN }} --publish-package --non-interactive --no-wait --no-persist-id
   build_and_deploy_nuxt:
     name: Build and Deploy Nuxt based static site to Wasmer Edge
     runs-on: ubuntu-latest
@@ -338,7 +289,6 @@ jobs:
         shell: bash
         run: |
           echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-
       - uses: actions/cache@v3
         name: Setup pnpm cache
         with:
@@ -352,20 +302,13 @@ jobs:
       - name: Build Nuxt
         working-directory: ${{env.NUXT_DIR}}
         run: pnpm build
-      - name: Publish package to wasmer.wtf
-        working-directory: ${{env.NUXT_DIR}}
-        run: wasmer publish --registry="wasmer.wtf" --token=${{ secrets.WAPM_DEV_TOKEN }} --no-validate .
       - name: Deploy app to wasmer.wtf
-        shell: bash
         working-directory: ${{env.NUXT_DIR}}
-        run: wasmer deploy --registry="https://registry.wasmer.wtf/graphql" --token=${{ secrets.WAPM_DEV_TOKEN }} --non-interactive --no-wait --no-persist-id
-      - name: Publish package to wasmer.io
-        working-directory: ${{env.NUXT_DIR}}
-        run: wasmer publish --registry="wasmer.io" --token=${{ secrets.WASMER_CIUSER_PROD_TOKEN }} --no-validate .
+        run: wasmer deploy --registry="https://registry.wasmer.wtf/graphql" --token=${{ secrets.WAPM_DEV_TOKEN }} --publish-package --non-interactive --no-wait --no-persist-id
         continue-on-error: true
       - name: Deploy app to wasmer.io
         working-directory: ${{env.NUXT_DIR}}
-        run: wasmer deploy --registry="https://registry.wasmer.io/graphql" --token=${{ secrets.WASMER_CIUSER_PROD_TOKEN }} --non-interactive --no-wait --no-persist-id
+        run: wasmer deploy --registry="https://registry.wasmer.io/graphql" --token=${{ secrets.WASMER_CIUSER_PROD_TOKEN }} --publish-package --non-interactive --no-wait --no-persist-id
   build_and_deploy_svelte:
     name: Build and Deploy Svelte based static site to Wasmer Edge
     runs-on: ubuntu-latest
@@ -387,7 +330,6 @@ jobs:
         shell: bash
         run: |
           echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-
       - uses: actions/cache@v3
         name: Setup pnpm cache
         with:
@@ -401,17 +343,10 @@ jobs:
       - name: Build Svelte
         working-directory: ${{env.SVELTE_DIR}}
         run: pnpm build
-      - name: Publish package to wasmer.wtf
-        working-directory: ${{env.SVELTE_DIR}}
-        run: wasmer publish --registry="wasmer.wtf" --token=${{ secrets.WAPM_DEV_TOKEN }} --no-validate .
       - name: Deploy app to wasmer.wtf
-        shell: bash
         working-directory: ${{env.SVELTE_DIR}}
-        run: wasmer deploy --registry="https://registry.wasmer.wtf/graphql" --token=${{ secrets.WAPM_DEV_TOKEN }} --non-interactive --no-wait --no-persist-id
-      - name: Publish package to wasmer.io
-        working-directory: ${{env.SVELTE_DIR}}
-        run: wasmer publish --registry="wasmer.io" --token=${{ secrets.WASMER_CIUSER_PROD_TOKEN }} --no-validate .
+        run: wasmer deploy --registry="https://registry.wasmer.wtf/graphql" --token=${{ secrets.WAPM_DEV_TOKEN }} --publish-package --non-interactive --no-wait --no-persist-id
         continue-on-error: true
       - name: Deploy app to wasmer.io
         working-directory: ${{env.SVELTE_DIR}}
-        run: wasmer deploy --registry="https://registry.wasmer.io/graphql" --token=${{ secrets.WASMER_CIUSER_PROD_TOKEN }} --non-interactive --no-wait --no-persist-id
+        run: wasmer deploy --registry="https://registry.wasmer.io/graphql" --token=${{ secrets.WASMER_CIUSER_PROD_TOKEN }} --publish-package --non-interactive --no-wait --no-persist-id
