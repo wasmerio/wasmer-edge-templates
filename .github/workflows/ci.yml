@@ -115,18 +115,13 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8
-          run_install: false
+          node-version: "20.7.0"
       - name: Install Gatsby's dependencies
         working-directory: ${{env.GATSBY_DIR}}
-        run: pnpm install
+        run: npm install
       - name: Build Gatsby
         working-directory: ${{env.GATSBY_DIR}}
-        run: pnpm build
+        run: npm build
       - name: Deploy app to wasmer.wtf
         working-directory: ${{env.GATSBY_DIR}}
         run: wasmer deploy --registry="https://registry.wasmer.wtf/graphql" --token=${{ secrets.WAPM_DEV_TOKEN }} --publish-package --non-interactive --no-wait --no-persist-id
