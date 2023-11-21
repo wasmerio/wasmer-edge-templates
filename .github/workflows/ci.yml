@@ -121,7 +121,7 @@ jobs:
         run: npm install
       - name: Build Gatsby
         working-directory: ${{env.GATSBY_DIR}}
-        run: npm build
+        run: npm run build
       - name: Deploy app to wasmer.wtf
         working-directory: ${{env.GATSBY_DIR}}
         run: wasmer deploy --registry="https://registry.wasmer.wtf/graphql" --token=${{ secrets.WAPM_DEV_TOKEN }} --publish-package --non-interactive --no-wait --no-persist-id
