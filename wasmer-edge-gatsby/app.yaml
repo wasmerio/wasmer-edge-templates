@@ -2,4 +2,3 @@
 kind: wasmer.io/App.v0
 name: wasmer-edge-gatsby-example
 package: wasmer/wasmer-edge-gatsby-example@0.1.0
-app_id: da_ynYYILtXU1dn
