@@ -1,7 +1,7 @@
 [package]
-name = "wasmer/wasmer-edge-docusaurus-example"
+name = "wasmer-tests/wasmer-edge-docusaurus-sample"
 version = "0.1.0"
-description = "wasmer/wasmer-edge-docusaurus-example website"
+description = "wasmer-tests/wasmer-edge-docusaurus-sample website"
 
 [dependencies]
 "wasmer/static-web-server" = "*"
