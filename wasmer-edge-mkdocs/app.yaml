@@ -1,4 +1,4 @@
 ---
 kind: wasmer.io/App.v0
-name: wasmer-edge-mkdocs-example
-package: wasmer/wasmer-edge-mkdocs-example@0.1.0
+name: wasmer-edge-mkdocs-sample
+package: wasmer-tests/wasmer-edge-mkdocs-sample

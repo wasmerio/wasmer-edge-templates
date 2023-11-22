@@ -1,7 +1,7 @@
 [package]
-name = "wasmer/wasmer-edge-svelte-example"
+name = "wasmer-tests/wasmer-edge-svelte-sample"
 version = "0.1.1"
-description = "wasmer/wasmer-edge-svelte-example website"
+description = "wasmer-tests/wasmer-edge-svelte-sample website"
 
 [dependencies]
 "wasmer/static-web-server" = "*"

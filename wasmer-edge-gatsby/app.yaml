@@ -1,4 +1,4 @@
 ---
 kind: wasmer.io/App.v0
-name: wasmer-edge-gatsby-example
-package: wasmer/wasmer-edge-gatsby-example@0.1.0
+name: wasmer-edge-gatsby-sample
+package: wasmer-tests/wasmer-edge-gatsby-sample

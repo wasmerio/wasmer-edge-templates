@@ -1,4 +1,4 @@
 ---
 kind: wasmer.io/App.v0
-name: wasmer-edge-astro-example
-package: wasmer/wasmer-edge-astro-example
+name: wasmer-edge-astro-sample
+package: wasmer-tests/wasmer-edge-astro-sample

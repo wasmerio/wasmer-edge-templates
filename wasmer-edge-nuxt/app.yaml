@@ -1,4 +1,4 @@
 ---
 kind: wasmer.io/App.v0
-name: wasmer-edge-nuxt-example
-package: wasmer/wasmer-edge-nuxt@0.1.0
+name: wasmer-edge-nuxt-sample
+package: wasmer-tests/wasmer-edge-nuxt-sample

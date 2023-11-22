@@ -1,7 +1,7 @@
 [package]
-name = "wasmer/wasmer-edge-astro-example"
+name = "wasmer-tests/wasmer-edge-astro-sample"
 version = "0.1.0"
-description = "wasmer/wasmer-edge-astro-example website"
+description = "wasmer-tests/wasmer-edge-astro-sample website"
 
 [dependencies]
 "wasmer/static-web-server" = "*"
